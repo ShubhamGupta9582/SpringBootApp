@@ -8,18 +8,19 @@ public class UserDto {
     private String name;
     private String email;
     private Double salary;
+    private String userRoles;
 
     private Set<String> roles;
 
     public UserDto() {
     }
 
-    public UserDto(Integer id, String name, String email, Double salary, Set<String> roles) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.salary = salary;
-        this.roles = roles;
+    public String getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(String userRoles) {
+        this.userRoles = userRoles;
     }
 
     public Integer getId() {
@@ -59,6 +60,10 @@ public class UserDto {
     }
 
     public void setRoles(Set<String> roles) {
+        String userRoles="";
+       for(String role : roles)
+           userRoles += role+"  ";
+       this.setUserRoles(userRoles);
         this.roles = roles;
     }
 }

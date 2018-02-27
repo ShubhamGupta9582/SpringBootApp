@@ -4,8 +4,10 @@ import com.demo.pkg.commands.UserCommand;
 import com.demo.pkg.dtos.UserDto;
 import com.demo.pkg.entities.Role;
 import com.demo.pkg.entities.User;
+import com.demo.pkg.exceptions.MyNullPointerException;
 import com.demo.pkg.repositories.RoleRepository;
 import com.demo.pkg.repositories.UserRepository;
+import com.demo.pkg.responsecode.ApiResponseCode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -67,6 +69,9 @@ public class UserService {
 
     public UserDto getById(Integer id) {
         User user = userRepository.findOne(id);
+        if(user == null){
+            throw new MyNullPointerException(ApiResponseCode.NULL_CODE, ApiResponseCode.NULL_MESSAGE);
+        }
         UserDto userDto = new UserDto();
         userDto.setId(user.getId());
         userDto.setName(user.getName());
@@ -80,8 +85,43 @@ public class UserService {
         return userDto;
     }
 
-    public void updateUser(long id, User user) {
-        userRepository.save(user);
+    public UserDto updateUser(Integer id, UserCommand userCommand) {
+        User fetchedUser = userRepository.findOne(id);
+        List<Integer> roleId = null;
+        if(userCommand.getName() != null){
+            fetchedUser.setName(userCommand.getName());
+        }
+        if(userCommand.getEmail() != null){
+            fetchedUser.setEmail(userCommand.getEmail());
+        }
+        if(userCommand.getSalary() != 0){
+            fetchedUser.setSalary(userCommand.getSalary());
+        }
+        if(userCommand.getRoleIds() != roleId){
+            Set<Role> roles = new HashSet<>();
+            List<Integer> roleIds = userCommand.getRoleIds();
+
+                for (int roleid : roleIds) {
+                    Role role = roleRepository.findOne(roleid);
+                    if (role != null) {
+                        roles.add(role);
+                    }
+            }
+            fetchedUser.setRoles(roles);
+        }
+        User user = userRepository.save(fetchedUser);
+
+        UserDto userDto = new UserDto();
+        userDto.setId(user.getId());
+        userDto.setName(user.getName());
+        userDto.setEmail(user.getEmail());
+        userDto.setSalary(user.getSalary());
+        Set<String> roleNames = new HashSet<>();
+        for(Role role : user.getRoles()){
+            roleNames.add(role.getRole());
+        }
+        userDto.setRoles(roleNames);
+        return userDto;
     }
 
     public void deleteUser(Integer id) {

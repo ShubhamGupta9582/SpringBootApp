@@ -3,12 +3,10 @@ package com.demo.pkg.controllers;
 import com.demo.pkg.commands.UserCommand;
 import com.demo.pkg.dtos.ResponseDTO;
 import com.demo.pkg.dtos.UserDto;
-import com.demo.pkg.entities.User;
+import com.demo.pkg.exceptions.IdNotFoundException;
+import com.demo.pkg.responsecode.ApiResponseCode;
 import com.demo.pkg.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,29 +25,52 @@ public class UserController {
         userService.addUser(userCommand);
 
         ResponseDTO response = new ResponseDTO();
-        response.setCode(0);
-        response.setMessage("User Created Successfully.");
+        response.setCode(ApiResponseCode.SUCCESS_CODE);
+        response.setMessage(ApiResponseCode.SUCCESS_MESSAGE);
         return response;
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public List<UserDto> getAllUsers(){
-        return userService.getAllUsers();
+    public ResponseDTO getAllUsers(){
+        List<UserDto> userDtos = userService.getAllUsers();
+
+        ResponseDTO responseDTO = new ResponseDTO();
+        responseDTO.setCode(ApiResponseCode.SUCCESS_CODE);
+        responseDTO.setMessage(ApiResponseCode.SUCCESS_MESSAGE);
+        responseDTO.setData(userDtos);
+        return responseDTO;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public UserDto getById(@PathVariable Integer id){
-        return userService.getById(id);
+    public ResponseDTO getById(@PathVariable Integer id){
+        UserDto userDto = userService.getById(id);
+
+        ResponseDTO responseDTO = new ResponseDTO();
+        responseDTO.setCode(ApiResponseCode.SUCCESS_CODE);
+        responseDTO.setMessage(ApiResponseCode.SUCCESS_MESSAGE);
+        responseDTO.setData(userDto);
+        return responseDTO;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = "application/json")
-    public void updateUser(@RequestBody User user, @PathVariable Integer id){
-        userService.updateUser(id, user);
+    public ResponseDTO updateUser(@RequestBody UserCommand userCommand, @PathVariable Integer id){
+        UserDto userDto = userService.updateUser(id, userCommand);
+
+        ResponseDTO responseDTO = new ResponseDTO();
+        responseDTO.setCode(ApiResponseCode.SUCCESS_CODE);
+        responseDTO.setData(userDto);
+        responseDTO.setMessage(ApiResponseCode.SUCCESS_MESSAGE);
+        return responseDTO;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE, consumes = "application/json")
-    public void deleteUser(@PathVariable Integer id){
+    public ResponseDTO deleteUser(@PathVariable Integer id){
         userService.deleteUser(id);
+
+        ResponseDTO responseDTO = new ResponseDTO();
+        responseDTO.setCode(ApiResponseCode.SUCCESS_CODE);
+        responseDTO.setMessage(ApiResponseCode.SUCCESS_MESSAGE);
+        return responseDTO;
     }
 
     @RequestMapping( value = "/page", method = RequestMethod.GET)
