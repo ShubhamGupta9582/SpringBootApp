@@ -3,14 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="c7051874-0329-437f-9d70-98964fc0df19" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/demo/pkg/controllers/UserController.class" afterPath="$PROJECT_DIR$/out/production/classes/com/demo/pkg/controllers/UserController.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/demo/pkg/dtos/UserDto.class" afterPath="$PROJECT_DIR$/out/production/classes/com/demo/pkg/dtos/UserDto.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/classes/com/demo/pkg/services/UserService.class" afterPath="$PROJECT_DIR$/out/production/classes/com/demo/pkg/services/UserService.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/resources/application.properties" afterPath="$PROJECT_DIR$/out/production/resources/application.properties" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/pkg/controllers/UserController.java" afterPath="$PROJECT_DIR$/src/main/java/com/demo/pkg/controllers/UserController.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/pkg/dtos/UserDto.java" afterPath="$PROJECT_DIR$/src/main/java/com/demo/pkg/dtos/UserDto.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/pkg/services/UserService.java" afterPath="$PROJECT_DIR$/src/main/java/com/demo/pkg/services/UserService.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -52,7 +44,7 @@
       <file leaf-file-name="CustomException.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/demo/pkg/exceptions/CustomException.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="386">
+            <state relative-caret-position="335">
               <caret line="28" column="83" lean-forward="false" selection-start-line="28" selection-start-column="83" selection-end-line="28" selection-end-column="83" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -990,12 +982,12 @@
       <workItem from="1519370098479" duration="5764000" />
       <workItem from="1519620678971" duration="12446000" />
       <workItem from="1519647472371" duration="2184000" />
-      <workItem from="1519714366049" duration="9226000" />
+      <workItem from="1519714366049" duration="9621000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103879000" />
+    <option name="totallyTimeSpent" value="104274000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1500,7 +1492,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/demo/pkg/exceptions/CustomException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="386">
+        <state relative-caret-position="335">
           <caret line="28" column="83" lean-forward="false" selection-start-line="28" selection-start-column="83" selection-end-line="28" selection-end-column="83" />
           <folding>
             <element signature="imports" expanded="true" />
